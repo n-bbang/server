@@ -8,6 +8,6 @@ const port = process.env.PORT || 3000;
 
 app.use("/user", UserRouter);
 
-app.listen(3000, () => {
+app.listen(5000, () => {
 	console.log('start')
 })
