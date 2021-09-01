@@ -1,5 +1,5 @@
 #ignore db
-/config/db.ts
+/config
 
 #node_modules
 /node_modules

@@ -8,6 +8,6 @@ UserRouter.get("/", (req: Request, res: Response, next: NextFunction) => {
 });
 //UserRouter.get("/:id",UserController.getUserName);
 //UserRouter.get("/test",UserController.authUser);
-UserRouter.post("/auth",UserController.authUser);
+UserRouter.get("/auth",UserController.authUser);
 
 export = UserRouter;

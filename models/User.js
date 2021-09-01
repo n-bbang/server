@@ -5,13 +5,15 @@ class User extends Sequelize.Model {
         return super.init({
 	    userId:{
 		type:Sequelize.INTEGER,
-		allowNull:false,
+		allowNull:true,
 		primaryKey: true,
 		unique:true,
+		autoIncrement:true,
 	    },
 	    loginId: {
 		type:Sequelize.STRING(32),
 		allowNull:false,
+		unique:true,
 	    },
 	    passwd: {
 		type:Sequelize.STRING(32),
@@ -24,6 +26,7 @@ class User extends Sequelize.Model {
 	    nickname : {
 		    type: Sequelize.STRING(15),
 		    allowNull:true,
+		    unique:true,
 	    },
 	    gender : {
 		type:Sequelize.BOOLEAN,
@@ -36,6 +39,7 @@ class User extends Sequelize.Model {
 	    account : {
 		type:Sequelize.STRING(32),
 		allowNull:true,
+		unique:true,
 	    }
         }, {
             sequelize,
