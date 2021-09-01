@@ -1,5 +1,5 @@
 #ignore db
-/config
+config
 
 #node_modules
-/node_modules
+node_modules
