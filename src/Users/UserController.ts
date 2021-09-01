@@ -13,9 +13,9 @@ class UserController {
 		// 	);
 	
 		// });
-		return {
+		res.json( {
 			"input" : req.params.id
-		}
+		})
 	}
 }
 
