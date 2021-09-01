@@ -5,14 +5,17 @@ const connect = sqlServer.dbconnection.init();
 class UserController {
 	public getUserName = (req: Request, res: Response, next: NextFunction) => {
 		console.log("activate get user Name");
-		const sql = `select name from users where id='${req.params.id}'`;
-		connect.query(sql, (err, result, fields) => {
-			if(err) throw err;
-			res.json(
-				result
-			);
+		// const sql = `select name from users where id='${req.params.id}'`;
+		// connect.query(sql, (err, result, fields) => {
+		// 	if(err) throw err;
+		// 	res.json(
+		// 		result
+		// 	);
 	
-		});
+		// });
+		return {
+			"input" : req.params.id
+		}
 	}
 }
 
