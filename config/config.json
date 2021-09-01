@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "db_nbbang",
+    "password": "1020",
+    "database": "nbbang",
+    "host": "34.66.59.216",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "db_nbbang",
+    "password": "1020",
+    "database": "nbbang",
+    "host": "34.66.59.216",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "db_nbbang",
+    "password": "1020",
+    "database": "nbbang",
+    "host": "34.66.59.216",
+    "dialect": "mysql"
+  }
+}
