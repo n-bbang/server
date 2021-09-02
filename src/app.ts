@@ -13,7 +13,7 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.error(err);
   });
-
+  app.use(express.json());
 app.use("/user", UserRouter);
 app.use("/auth",AuthRouter);
 

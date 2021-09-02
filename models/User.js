@@ -16,7 +16,7 @@ class User extends Sequelize.Model {
 		unique:true,
 	    },
 	    passwd: {
-		type:Sequelize.STRING(32),
+		type:Sequelize.STRING(255),
 		allowNull:false,
 	    },
 	    name : {
@@ -40,7 +40,12 @@ class User extends Sequelize.Model {
 		type:Sequelize.STRING(32),
 		allowNull:true,
 		unique:true,
+	    },
+	    bank : {
+		type:Sequelize.STRING(32),
+		allowNull:true,
 	    }
+	    
         }, {
             sequelize,
             timestamps: false,

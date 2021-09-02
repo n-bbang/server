@@ -4,6 +4,6 @@ import AuthController from "./AuthController";
 const AuthRouter = express.Router();
 
 
-AuthRouter.get("/",AuthController.authUser);
+AuthRouter.post("/",AuthController.authUser);
 
 export = AuthRouter;
