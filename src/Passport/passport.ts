@@ -1,4 +1,4 @@
-import {User} from '../../models/User';
+import {User} from '../../models';
 import crypto from "crypto";
 
 const passport = require('passport');
@@ -32,9 +32,9 @@ const jwtStrategyOption = {
 //...?????
 const jwtVerift = (payload, done)=> {
   try {
-    const check = User.findOne({where:{loginId:loginId}});
+    const check = User.findOne({where:{loginId:payload.loginId}});
     if(!check) return done(null,false);
-    let hashPassword = crypto.createHash("sha512").update(passwd).digest("hex");
+    let hashPassword = crypto.createHash("sha512").update(payload.passwd).digest("hex");
     if(!(check.passwd === hashPassword)) return done(null,false);
     console.log(check);
     return done(null,check);
