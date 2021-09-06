@@ -8,7 +8,9 @@ const passportConfig = require('./Passport/passport');
 const { sequelize } = require('../models');
 
 const app: express.Application = express();
+const morgan = require('morgan');
 const port = process.env.PORT || 3000;
+const fs = require('fs');
 
 sequelize.sync({ force: false })
   .then(() => {
@@ -17,13 +19,16 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.error(err);
   });
-  app.use(express.json());
+app.use(express.json());
+app.use(morgan('combined',{
+    stream: fs.createWriteStream('./access.log', { flags: 'a' })
+  }));
 app.use("/user", UserRouter);
-app.use("/auth",AuthRouter);
+app.use("/auth", AuthRouter);
 
 app.use(passport.initialize());
 passportConfig();
 
 app.listen(5000, () => {
-	console.log('start')
+  console.log('start')
 })

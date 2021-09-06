@@ -15,6 +15,7 @@ const localVerify = async (loginId, passwd, done)=> {
   try {
     console.log("loginId : ",loginId+", "+passwd );
     const user = await User.findOne({where:{loginId:loginId}});
+    if(!user) return done(null,false);
     let hashPassword = crypto.createHash("sha512").update(passwd).digest("hex");
     if(!(user.passwd == hashPassword)) return done(null,false);
     console.log("localVerify success!!");
