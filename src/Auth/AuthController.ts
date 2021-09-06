@@ -9,9 +9,9 @@ const jwt = require('jsonwebtoken');
 class AuthController {
 
 	public authUser = async (req: Request, res: Response, next: NextFunction) => {
-		console.log(req.body.passwd.toString());
+		console.log("input : ",req.body);
 		try {
-			const {body: { loginId , passwd,name,nickname,gender,phoneNumber }} = req;
+			const { body: { loginId, passwd, name, nickname, gender, phoneNumber } } = req;
 			let hashPassword = crypto.createHash("sha512").update(passwd).digest("hex");
 			console.log(hashPassword)
 			const data = {
@@ -22,12 +22,12 @@ class AuthController {
 				gender: gender,
 				phoneNumber: phoneNumber,
 			}
-			await User.create(data).catch(e=> {
+			await User.create(data).catch(e => {
 				console.log("error", e);
 			});
 			await res.json({
-				status:200,
-				message:"joinSuccess"
+				status: 200,
+				message: "joinSuccess"
 			});
 		} catch (e) {
 			res.sendStatus(500);
@@ -37,33 +37,34 @@ class AuthController {
 
 	public login = async (req: Request, res: Response, next: NextFunction) => {
 		try {
+			console.log("input : ",req.body);
 			passport.authenticate('local', { session: false }, (err, user) => {
-			  if (err || !user) {
-				console.log(err);
-				return res.status(400).json({success : false, message : "로그인 실패"});
-			  }
-			  req.login(user, { session: false }, (err) => {
-				if (err) {
-				  console.log(err);
-				  return res.send(err);
+				if (err || !user) {
+					console.log("err:",user);
+					return res.status(400).json({ success: 400, message: "로그인 실패" });
 				}
-				const token = jwt.sign(
-				  { loginId : user.loginId },
-				  'nbbang',
-				  {expiresIn: "7d"}
-				);
-				return res.json({ success : true, message : "로그인 성공", token });
-			  });
+				req.login(user, { session: false }, (err) => {
+					if (err) {
+						console.log(err);
+						return res.send(err);
+					}
+					const token = jwt.sign(
+						{ loginId: user.loginId },
+						'nbbang',
+						{ expiresIn: "7d" }
+					);
+					return res.json({ status: 200, message: "로그인 성공", token });
+				});
 			})(req, res);
-		  } catch (e) {
+		} catch (e) {
 			console.error(e);
 			return next(e);
-		  }
+		}
 	}
 
-	public check =  (req, res) => {
+	public check = (req, res) => {
 		res.json(req.decoded);
-	  };
+	};
 }
 
 export default new AuthController();

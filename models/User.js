@@ -44,6 +44,10 @@ class User extends Sequelize.Model {
 	    bank : {
 		type:Sequelize.STRING(32),
 		allowNull:true,
+	    },
+	    saltKey : {
+		type:Sequelize.INTEGER,
+		allowNull:false
 	    }
 	    
         }, {

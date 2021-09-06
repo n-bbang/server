@@ -11,15 +11,16 @@ const LocalStrategyOption = {
   usernameField: "loginId",
   passwordField: "passwd"
 };
-const localVerify = (loginId, passwd, done)=> {
+const localVerify = async (loginId, passwd, done)=> {
   try {
-    const check = User.findOne({where:{loginId:loginId}});
-    if(!check) return done(null,false);
+    console.log("loginId : ",loginId+", "+passwd );
+    const user = await User.findOne({where:{loginId:loginId}});
     let hashPassword = crypto.createHash("sha512").update(passwd).digest("hex");
-    if(!(check.passwd === hashPassword)) return done(null,false);
-    console.log(check);
-    return done(null,check);
+    if(!(user.passwd == hashPassword)) return done(null,false);
+    console.log("localVerify success!!");
+    return done(null,user);
   } catch(e){
+    console.log("error : ",e);
     return done(e);
   }
 }
@@ -32,12 +33,12 @@ const jwtStrategyOption = {
 //...?????
 const jwtVerift = (payload, done)=> {
   try {
-    const check = User.findOne({where:{loginId:payload.loginId}});
-    if(!check) return done(null,false);
+    const user = User.findOne({where:{loginId:payload.loginId}});
+    if(!user) return done(null,false);
     let hashPassword = crypto.createHash("sha512").update(payload.passwd).digest("hex");
-    if(!(check.passwd === hashPassword)) return done(null,false);
-    console.log(check);
-    return done(null,check);
+    if(!(user.passwd === hashPassword)) return done(null,false);
+    console.log(user);
+    return done(null,user);
   } catch (e) {
     return done(e);
   }
