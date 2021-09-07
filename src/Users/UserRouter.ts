@@ -6,6 +6,7 @@ const UserRouter = express.Router();
 
 //UserRouter.get("/:id",UserController.getUserName);
 //UserRouter.get("/test",UserController.authUser);
-UserRouter.get("/username",verifyToken,UserController.getUserName);
+UserRouter.get("/name/:id",verifyToken,UserController.getUserName);
+UserRouter.post("/info",verifyToken,UserController.getUserInfo);
 
 export = UserRouter;

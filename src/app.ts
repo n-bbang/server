@@ -1,6 +1,7 @@
 import express from 'express';
 import UserRouter from './Users/UserRouter';
 import AuthRouter from './Auth/AuthRouter';
+import RoomRouter from './AddRoom/RoomRouter';
 
 const passport = require('passport');
 const passportConfig = require('./Passport/passport');
@@ -25,6 +26,7 @@ app.use(morgan('combined',{
   }));
 app.use("/user", UserRouter);
 app.use("/auth", AuthRouter);
+app.use("/room",RoomRouter);
 
 app.use(passport.initialize());
 passportConfig();
