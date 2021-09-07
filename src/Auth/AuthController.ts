@@ -12,7 +12,8 @@ class AuthController {
 		console.log("input : ",req.body);
 		try {
 			const { body: { loginId, passwd, name, nickname, gender, phoneNumber } } = req;
-			let hashPassword = crypto.createHash("sha512").update(passwd).digest("hex");
+			let salt = 10 + "";
+			let hashPassword = crypto.createHash("sha512").update(passwd+salt).digest("hex");
 			console.log(hashPassword)
 			const data = {
 				loginId: loginId,
@@ -21,6 +22,7 @@ class AuthController {
 				nickname: nickname,
 				gender: gender,
 				phoneNumber: phoneNumber,
+				saltKey:salt
 			}
 			await User.create(data).catch(e => {
 				console.log("error", e);
