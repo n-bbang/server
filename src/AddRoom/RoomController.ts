@@ -25,7 +25,7 @@ class RoomController {
 		} catch (e) {
 			console.log(e);
 			res.status(500).json({
-				result : "server model error"
+				result : "error"
 			})
 		}
 

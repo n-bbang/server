@@ -31,6 +31,6 @@ app.use("/room",RoomRouter);
 app.use(passport.initialize());
 passportConfig();
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log('start')
 })

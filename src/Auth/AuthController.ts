@@ -53,7 +53,7 @@ class AuthController {
 					const token = jwt.sign(
 						{ loginId: user.loginId },
 						'nbbang',
-						{ expiresIn: "7d" }
+						{ expiresIn: "30m" }
 					);
 					return res.json({ status: 200, message: "로그인 성공", token });
 				});
