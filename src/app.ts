@@ -1,8 +1,9 @@
 import express from 'express';
-import UserRouter from './Users/UserRouter';
+import UserRouter, { post } from './Users/UserRouter';
 import AuthRouter from './Auth/AuthRouter';
 import RoomRouter from './AddRoom/RoomRouter';
 import dotenv from 'dotenv';
+import APILimiter from './middleware/limit';
 
 const passport = require('passport');
 const passportConfig = require('./Passport/passport');
@@ -27,7 +28,8 @@ app.use(express.json());
 app.use(morgan('combined',{
     stream: fs.createWriteStream('./access.log', { flags: 'a' })
   }));
-app.use("/user", UserRouter);
+
+app.use("/user", APILimiter, UserRouter);
 app.use("/auth", AuthRouter);
 app.use("/room",RoomRouter);
 
