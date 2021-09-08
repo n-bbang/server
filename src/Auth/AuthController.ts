@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 class AuthController {
 
 	public authUser = async (req: Request, res: Response, next: NextFunction) => {
-		console.log("input : ",req.body);
 		try {
 			const { body: { loginId, passwd, name, nickname, gender, phoneNumber } } = req;
 			let salt = 10 + "";
@@ -39,7 +38,6 @@ class AuthController {
 
 	public login = async (req: Request, res: Response, next: NextFunction) => {
 		try {
-			console.log("input : ",req.body);
 			passport.authenticate('local', { session: false }, (err, user) => {
 				if (err || !user) {
 					console.log("err:",user);
