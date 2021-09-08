@@ -4,16 +4,15 @@ import AuthRouter from './Auth/AuthRouter';
 import RoomRouter from './AddRoom/RoomRouter';
 import dotenv from 'dotenv';
 import APILimiter from './middleware/limit';
+import passport from 'passport';
+import morgan from 'morgan';
+import fs from 'fs';
 
-const passport = require('passport');
 const passportConfig = require('./Passport/passport');
-
 const { sequelize } = require('../models');
 
 const app: express.Application = express();
-const morgan = require('morgan');
 const port = process.env.PORT || 3000;
-const fs = require('fs');
 
 dotenv.config();
 
