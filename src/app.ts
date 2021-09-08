@@ -2,6 +2,7 @@ import express from 'express';
 import UserRouter from './Users/UserRouter';
 import AuthRouter from './Auth/AuthRouter';
 import RoomRouter from './AddRoom/RoomRouter';
+import dotenv from 'dotenv';
 
 const passport = require('passport');
 const passportConfig = require('./Passport/passport');
@@ -12,6 +13,8 @@ const app: express.Application = express();
 const morgan = require('morgan');
 const port = process.env.PORT || 3000;
 const fs = require('fs');
+
+dotenv.config();
 
 sequelize.sync({ force: false })
   .then(() => {
