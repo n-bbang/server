@@ -6,6 +6,7 @@ const RoomRouter = express.Router();
 
 
 RoomRouter.post("/add",verifyToken,RoomController.AddRoom);
+RoomRouter.post("/update",verifyToken,RoomController.UpdateRoom);
 
 
 export = RoomRouter;
