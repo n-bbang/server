@@ -10,7 +10,8 @@ class BossInfo extends Sequelize.Model {
 	    roomId : {
 		    type:Sequelize.INTEGER,
 		    allowNull:false,
-		    primaryKey:true
+            primaryKey:true,
+            autoIncrement:true
 	    }
 
 	    

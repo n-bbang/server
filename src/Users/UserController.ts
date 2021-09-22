@@ -1,5 +1,7 @@
 import { NextFunction, Response, Request } from "express";
 import { User } from '../../models';
+import { BossInfo } from '../../models'
+import { UserInfo } from '../../models'
 import crypto from "crypto";
 
 const jwt = require('jsonwebtoken');
@@ -22,16 +24,15 @@ class UserController {
 			let jwt_secret = 'nbbang';
 			const Id = jwt.decode(token,jwt_secret).loginId;
 			const user = await User.findOne({ where: { loginId: Id } });
+			//const joinRoom = await UserInfo.findAll({ where: { userId: user.userId } }) || {};
+			const bossRoom = await BossInfo.findAll({ where: { UserId: user.userId } }) || {};
 			res.status(200).json({
-				loginId: user.loginId,
-				name: user.name,
-				nickname: user.nickname,
-				gender: user.gender,
-				phoneNumber: user.phoneNumber,
-				account: user.account,
-				bank: user.bank,
+				user : user,
+				bossRoom : bossRoom,
+				//joinRoom : joinRoom
 			})
 		} catch (e) {
+			console.log(e);
 			res.status(404).json({
 				result: "404 error"
 			})

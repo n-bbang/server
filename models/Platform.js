@@ -16,7 +16,10 @@ class Platfrom extends Sequelize.Model {
 		type:Sequelize.STRING(32),
 		allowNull:true,
 	    },
-
+        category : {
+        type:Sequelize.STRING(32),
+        allowNull:false,
+        },
 	    
         }, {
             sequelize,

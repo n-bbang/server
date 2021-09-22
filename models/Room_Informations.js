@@ -7,6 +7,7 @@ class RoomInfo extends Sequelize.Model {
 		type:Sequelize.INTEGER,
 		allowNull:true,
 		primaryKey:true,
+		autoIncrement:true
 	    },
 	    platformId : {
 		    type:Sequelize.INTEGER,
